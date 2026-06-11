@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cafe nom. ｜ 東中野の小さな隠れ家カフェ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FCF7F4; --blush:#F3DAD6; --blush-deep:#E7BDB6;
+    --rose:#BC7F78; --rose-deep:#9F665F;
+    --sage:#AEBCA6; --sage-soft:#DBE2D3;
+    --ink:#4B403B; --ink-soft:#796b64; --gold:#CBB48E;
+    --serif:"Shippori Mincho",serif;
+    --latin:"Cormorant Garamond",serif;
+    --sans:"Zen Kaku Gothic New",-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--paper);line-height:1.85;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+  /* sample bar */
+  .sample-bar{background:var(--ink);color:#F3E7E2;text-align:center;font-size:11.5px;letter-spacing:.18em;padding:7px 16px;font-weight:400}
+  .sample-bar span{color:var(--blush-deep)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(252,247,244,.82);backdrop-filter:blur(8px);border-bottom:1px solid rgba(75,64,59,.08)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:var(--latin);font-size:24px;letter-spacing:.06em;color:var(--ink)}
+  .brand b{font-weight:500}
+  .menu-links{display:flex;gap:30px;font-size:12.5px;letter-spacing:.16em;color:var(--ink-soft)}
+  .menu-links a{position:relative;padding:4px 0;transition:color .25s}
+  .menu-links a:hover{color:var(--rose)}
+  .menu-links a:focus-visible{outline:2px solid var(--rose);outline-offset:4px;border-radius:2px}
+
+  /* hero */
+  .hero{position:relative;min-height:86vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    background:radial-gradient(120% 90% at 50% 0%,#FBE9E6 0%,var(--paper) 60%),linear-gradient(180deg,#F7E4E0,var(--paper));overflow:hidden}
+  .hero .sprig{position:absolute;opacity:.5;color:var(--sage)}
+  .hero .sprig.l{top:11%;left:7%;width:84px;transform:rotate(-8deg)}
+  .hero .sprig.r{bottom:13%;right:8%;width:96px;transform:rotate(166deg);color:var(--blush-deep)}
+  .hero-inner{position:relative;z-index:2;padding:40px 0}
+  .eyebrow{font-family:var(--latin);font-style:italic;font-size:18px;letter-spacing:.05em;color:var(--rose);margin-bottom:18px}
+  .hero h1{font-family:var(--latin);font-weight:400;font-size:clamp(58px,12vw,116px);line-height:.95;letter-spacing:.02em;color:var(--ink)}
+  .hero h1 .dot{color:var(--rose)}
+  .tagline{font-family:var(--serif);font-weight:400;font-size:clamp(19px,3.4vw,27px);letter-spacing:.14em;margin-top:26px;color:var(--ink)}
+  .hero .sub{font-size:13px;letter-spacing:.22em;color:var(--ink-soft);margin-top:20px}
+  .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.3em;color:var(--ink-soft);writing-mode:vertical-rl;opacity:.7}
+
+  /* section scaffold */
+  section{padding:96px 0}
+  .eb{font-family:var(--latin);font-style:italic;font-size:17px;letter-spacing:.04em;color:var(--rose);margin-bottom:10px}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(25px,4.6vw,34px);letter-spacing:.08em;line-height:1.5;color:var(--ink)}
+  .center{text-align:center}
+  .divider{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 14px;color:var(--blush-deep)}
+  .divider .line{width:42px;height:1px;background:var(--blush-deep);opacity:.7}
+
+  /* concept */
+  .concept{background:linear-gradient(180deg,var(--paper),#FAF2EE)}
+  .concept p{font-family:var(--serif);font-weight:400;font-size:clamp(15px,2.4vw,18px);line-height:2.6;letter-spacing:.06em;max-width:600px;margin:26px auto 0;color:var(--ink)}
+
+  /* menu */
+  .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px 40px;margin-top:54px}
+  .item{border-top:1px solid rgba(188,127,120,.28);padding-top:20px;display:flex;gap:14px;align-items:flex-start}
+  .item .ic{flex:0 0 auto;width:30px;color:var(--sage);margin-top:2px}
+  .item h3{font-family:var(--serif);font-weight:500;font-size:17.5px;letter-spacing:.06em;color:var(--ink);display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .item h3 .price{font-family:var(--latin);font-size:18px;color:var(--rose);letter-spacing:.04em;white-space:nowrap}
+  .item p{font-size:13px;line-height:1.95;color:var(--ink-soft);margin-top:6px;letter-spacing:.04em}
+  .item .tag{display:inline-block;font-size:10.5px;letter-spacing:.14em;color:var(--rose);border:1px solid var(--blush-deep);border-radius:20px;padding:1px 9px;margin-top:9px}
+  .menu-note{text-align:center;font-size:11.5px;letter-spacing:.1em;color:var(--ink-soft);margin-top:40px;opacity:.85}
+
+  /* lookbook */
+  .look{background:linear-gradient(180deg,#FAF2EE,#F4E6E1)}
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:50px}
+  .tile{position:relative;aspect-ratio:3/4;border-radius:4px;overflow:hidden;background-position:center;background-size:cover;
+    box-shadow:0 10px 30px -18px rgba(75,64,59,.5)}
+  .tile.t1{background-image:linear-gradient(160deg,rgba(243,218,214,.15),rgba(174,188,166,.25)),url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80&auto=format&fit=crop'),linear-gradient(160deg,var(--blush),var(--sage-soft))}
+  .tile.t2{background-image:linear-gradient(160deg,rgba(243,218,214,.15),rgba(174,188,166,.25)),url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80&auto=format&fit=crop'),linear-gradient(160deg,var(--sage-soft),var(--blush))}
+  .tile.t3{background-image:linear-gradient(160deg,rgba(243,218,214,.15),rgba(174,188,166,.25)),url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80&auto=format&fit=crop'),linear-gradient(160deg,var(--blush-deep),var(--paper))}
+  .tile.t4{background-image:linear-gradient(160deg,rgba(243,218,214,.15),rgba(174,188,166,.25)),url('https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80&auto=format&fit=crop'),linear-gradient(160deg,var(--paper),var(--blush))}
+  .tile.t5{background-image:linear-gradient(160deg,rgba(243,218,214,.15),rgba(174,188,166,.25)),url('https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80&auto=format&fit=crop'),linear-gradient(160deg,var(--sage),var(--blush-deep))}
+  .tile.t6{background-image:linear-gradient(160deg,rgba(243,218,214,.15),rgba(174,188,166,.25)),url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80&auto=format&fit=crop'),linear-gradient(160deg,var(--blush),var(--sage))}
+  .tile .cap{position:absolute;left:0;bottom:0;width:100%;padding:14px 16px;font-size:11.5px;letter-spacing:.14em;color:#fff;
+    background:linear-gradient(0deg,rgba(75,64,59,.5),rgba(75,64,59,0))}
+
+  /* access */
+  .access{background:linear-gradient(180deg,#F4E6E1,var(--paper))}
+  .info-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;margin-top:50px;align-items:start}
+  .info dl{display:grid;grid-template-columns:auto 1fr;gap:18px 22px}
+  .info dt{font-family:var(--latin);font-style:italic;font-size:15px;color:var(--rose);letter-spacing:.03em;padding-top:2px}
+  .info dd{font-size:14.5px;letter-spacing:.05em;line-height:1.8}
+  .info dd small{display:block;color:var(--ink-soft);font-size:12.5px;margin-top:3px}
+  .map-card{background:linear-gradient(160deg,var(--blush),var(--sage-soft));border-radius:6px;padding:34px 30px;min-height:240px;
+    display:flex;flex-direction:column;justify-content:center;text-align:center;box-shadow:0 14px 36px -22px rgba(75,64,59,.55)}
+  .map-card .mk{width:46px;margin:0 auto 14px;color:var(--rose)}
+  .map-card h3{font-family:var(--serif);font-size:18px;letter-spacing:.1em;margin-bottom:6px}
+  .map-card p{font-size:13px;color:var(--ink-soft);letter-spacing:.05em}
+  .ig{display:inline-flex;align-items:center;gap:9px;margin-top:18px;font-family:var(--latin);font-size:18px;letter-spacing:.04em;color:var(--rose);
+    border:1px solid var(--blush-deep);border-radius:30px;padding:8px 20px;transition:.25s}
+  .ig:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
+  .ig svg{width:17px}
+
+  /* footer */
+  footer{background:var(--ink);color:#EFE2DC;text-align:center;padding:56px 24px 30px}
+  footer .fbrand{font-family:var(--latin);font-size:30px;letter-spacing:.06em;color:#fff}
+  footer .fbrand .dot{color:var(--blush-deep)}
+  footer .ftag{font-family:var(--serif);font-size:13px;letter-spacing:.16em;margin-top:10px;color:#D9C7C1}
+  footer .fnote{font-size:10.5px;letter-spacing:.12em;color:#9d8b84;margin-top:26px;line-height:1.9}
+
+  /* reveal */
+  .rev{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+  .rev.in{opacity:1;transform:none}
+
+  @media(max-width:720px){
+    .menu-links{display:none}
+    section{padding:70px 0}
+    .menu-grid{grid-template-columns:1fr;gap:24px}
+    .tiles{grid-template-columns:repeat(2,1fr)}
+    .info-grid{grid-template-columns:1fr;gap:34px}
+    .hero .sprig{opacity:.35}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .rev{transition:none;opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-bar">✦&nbsp;&nbsp;これは制作イメージのサンプルです <span>（cafe nom. 様へのご提案）</span>&nbsp;&nbsp;✦</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">cafe <b>nom.</b></div>
+    <nav class="menu-links">
+      <a href="#concept">CONCEPT</a>
+      <a href="#menu">MENU</a>
+      <a href="#look">GALLERY</a>
+      <a href="#access">ACCESS</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="sprig l" viewBox="0 0 60 120" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+    <path d="M30 118 C30 90 30 60 30 32"/>
+    <path d="M30 86 C16 80 10 70 10 58 C22 60 30 70 30 82"/>
+    <path d="M30 70 C44 64 50 54 50 42 C38 44 30 54 30 66"/>
+    <circle cx="30" cy="22" r="9"/><circle cx="30" cy="22" r="3" fill="currentColor" stroke="none"/>
+    <path d="M30 22 C24 14 24 6 30 0 C36 6 36 14 30 22"/>
+  </svg>
+  <svg class="sprig r" viewBox="0 0 60 120" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+    <path d="M30 118 C30 90 30 60 30 32"/>
+    <path d="M30 86 C16 80 10 70 10 58 C22 60 30 70 30 82"/>
+    <path d="M30 70 C44 64 50 54 50 42 C38 44 30 54 30 66"/>
+    <circle cx="30" cy="22" r="9"/><circle cx="30" cy="22" r="3" fill="currentColor" stroke="none"/>
+  </svg>
+  <div class="hero-inner wrap">
+    <div class="eyebrow">Higashi-Nakano, Tokyo</div>
+    <h1>cafe nom<span class="dot">.</span></h1>
+    <div class="tagline">日常に、少しの特別感を。</div>
+    <div class="sub">韓国風の小さな隠れ家カフェ ／ 季節をうつすチーズケーキ</div>
+  </div>
+  <div class="scroll-cue">SCROLL</div>
+</section>
+
+<!-- CONCEPT -->
+<section id="concept" class="concept center">
+  <div class="wrap rev">
+    <div class="divider"><span class="line"></span>✿<span class="line"></span></div>
+    <div class="eb">Concept</div>
+    <h2>扉の向こうの、淡い時間。</h2>
+    <p>静かな住宅街、ビルの2階。扉をあければ、パステルに包まれた小さな空間がひろがります。とろけるバスクチーズケーキ、季節をうつすレアチーズケーキ、生花を添えた一皿。<br>写真に残したくなる、少し特別な日常のための場所です。</p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="wrap">
+    <div class="center rev">
+      <div class="eb">Sweets &amp; Drinks</div>
+      <h2>季節の、ひと皿。</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="item rev">
+        <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 20c0-5 5-8 12-8s12 3 12 8v8H8z"/><path d="M8 28h24" /><path d="M20 12V7"/><circle cx="20" cy="6" r="1.6" fill="currentColor" stroke="none"/></svg>
+        <div>
+          <h3><span>バスクチーズケーキ</span><span class="price">¥800</span></h3>
+          <p>表面はこんがり、中はとろり。季節ごとに桜や栗など、その時々の表情で。</p>
+        </div>
+      </div>
+      <div class="item rev">
+        <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M10 16h20l-2 16H12z"/><path d="M14 16c0-4 12-4 12 0"/><path d="M20 8v4"/></svg>
+        <div>
+          <h3><span>季節のレアチーズケーキ</span><span class="price">¥900</span></h3>
+          <p>桃と紅茶、アメリカンチェリーなど。旬のフルーツをのせた、やさしい口どけ。</p>
+        </div>
+      </div>
+      <div class="item rev">
+        <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="20" cy="20" r="5"/><path d="M20 15c-2-4 0-7 0-7s2 3 0 7M25 20c4-2 7 0 7 0s-3 2-7 0M20 25c2 4 0 7 0 7s-2-3 0-7M15 20c-4 2-7 0-7 0s3-2 7 0"/></svg>
+        <div>
+          <h3><span>フラワーリボンケーキ</span><span class="price">¥3,300〜</span></h3>
+          <p>生花を飾った、記念日のための一台。お祝いやプレゼントに。</p>
+          <span class="tag">要予約 / 3日前まで</span>
+        </div>
+      </div>
+      <div class="item rev">
+        <svg class="ic" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 14h14v8a7 7 0 0 1-14 0z"/><path d="M26 16h3a3 3 0 0 1 0 6h-3"/><path d="M16 9v3M20 8v4"/></svg>
+        <div>
+          <h3><span>ドリンク</span><span class="price">¥600〜</span></h3>
+          <p>ホワイトピーチエイド、ピンクジンジャーエール、季節の紅茶など。</p>
+        </div>
+      </div>
+    </div>
+    <p class="menu-note">※ メニュー・価格はサンプル用の参考表示です。実際のお店の内容に差し替えます。</p>
+  </div>
+</section>
+
+<!-- LOOKBOOK -->
+<section id="look" class="look">
+  <div class="wrap">
+    <div class="center rev">
+      <div class="eb">Gallery</div>
+      <h2>パステルの、世界観。</h2>
+    </div>
+    <div class="tiles rev">
+      <div class="tile t1"><span class="cap">SIGNATURE CHEESECAKE</span></div>
+      <div class="tile t2"><span class="cap">INTERIOR</span></div>
+      <div class="tile t3"><span class="cap">SEASONAL FLOWER</span></div>
+      <div class="tile t4"><span class="cap">SWEETS</span></div>
+      <div class="tile t5"><span class="cap">DRINKS</span></div>
+      <div class="tile t6"><span class="cap">A LITTLE SPECIAL</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access" class="access">
+  <div class="wrap">
+    <div class="center rev">
+      <div class="eb">Access &amp; Information</div>
+      <h2>東中野駅から、徒歩5分。</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info rev">
+        <dl>
+          <dt>Address</dt><dd>東京都中野区東中野1-14-26 高山ビル2F<small>東中野駅 東口2 より徒歩約5分</small></dd>
+          <dt>Hours</dt><dd>11:30 〜 <small>火曜定休 ／ 営業時間はお店に合わせて調整します</small></dd>
+          <dt>Tel</dt><dd>070-9034-0393<small>ご予約はお電話、またはネット予約にて</small></dd>
+          <dt>Payment</dt><dd>クレジットカード・QR決済可<small>全面禁煙</small></dd>
+        </dl>
+        <a class="ig" href="https://www.instagram.com/cafenom.tokyo/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+          @cafenom.tokyo
+        </a>
+      </div>
+      <div class="map-card rev">
+        <svg class="mk" viewBox="0 0 40 48" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 46C20 46 35 30 35 18A15 15 0 0 0 5 18C5 30 20 46 20 46Z"/><circle cx="20" cy="18" r="5"/></svg>
+        <h3>高山ビル 2F</h3>
+        <p>住宅街にひっそりと佇む、隠れ家のような2階のカフェ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fbrand">cafe nom<span class="dot">.</span></div>
+  <div class="ftag">日常に、少しの特別感を。</div>
+  <div class="fnote">
+    東京都中野区東中野1-14-26 高山ビル2F ／ 070-9034-0393<br>
+     © cafe nom. ｜ 本ページは制作サンプル（デザインイメージ）です。
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
